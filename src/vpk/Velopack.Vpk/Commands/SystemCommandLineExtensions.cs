@@ -77,6 +77,13 @@ internal static class SystemCommandLineExtensions
         option.RequiresScheme(Uri.UriSchemeHttp, Uri.UriSchemeHttps).RequiresAbsolute();
         return option;
     }
+    
+    public static CliOption<Uri> MustBeValidFtpUri(this CliOption<Uri> option)
+    {
+        option.CustomParser = (v) => new Uri(v.Tokens.Single().Value, UriKind.RelativeOrAbsolute);
+        option.RequiresScheme(Uri.UriSchemeFtp).RequiresAbsolute();
+        return option;
+    }
 
     public static CliOption<FileInfo> RequiresExtension(this CliOption<FileInfo> option, string extension)
     {
