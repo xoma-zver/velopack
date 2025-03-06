@@ -148,6 +148,7 @@ public class Program
         downloadCommand.AddRepositoryDownload<AzureDownloadCommand, AzureRepository, AzureDownloadOptions>(provider);
         downloadCommand.AddRepositoryDownload<LocalDownloadCommand, LocalRepository, LocalDownloadOptions>(provider);
         downloadCommand.AddRepositoryDownload<HttpDownloadCommand, HttpRepository, HttpDownloadOptions>(provider);
+        downloadCommand.AddRepositoryDownload<FtpDownloadCommand, FtpRepository, FtpDownloadOptions>(provider);
         rootCommand.Add(downloadCommand);
 
         var uploadCommand = new CliCommand("upload", "Upload local package(s) to a remote update source.");
@@ -156,6 +157,7 @@ public class Program
         uploadCommand.AddRepositoryUpload<S3UploadCommand, S3Repository, S3UploadOptions>(provider);
         uploadCommand.AddRepositoryUpload<AzureUploadCommand, AzureRepository, AzureUploadOptions>(provider);
         uploadCommand.AddRepositoryUpload<LocalUploadCommand, LocalRepository, LocalUploadOptions>(provider);
+        uploadCommand.AddRepositoryUpload<FtpUploadCommand, FtpRepository, FtpUploadOptions>(provider);
         rootCommand.Add(uploadCommand);
 
         var deltaCommand = new CliCommand("delta", "Utilities for creating or applying delta packages.");
